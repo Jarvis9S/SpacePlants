@@ -1,0 +1,38 @@
+[
+    {
+    "type": "backgroundColorType",
+    "values": [
+        "brown",
+        "grey",
+        "orange",
+        "blue"
+    ]
+},
+{
+    "type": "woodType",
+    "values": [
+        "plain",
+        "striped",
+        "circled",
+        "spotted"
+    ]
+},
+{
+    "type": "addonsType",
+    "values": [
+        "flowers",
+        "leaves",
+        "thorns",
+        "spikes"
+    ]
+},
+{
+    "type": "flowerType",
+    "values": [
+        "rose",
+        "daisy",
+        "lilac",
+        "tentacle"
+    ]
+}
+]
