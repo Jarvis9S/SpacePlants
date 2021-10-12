@@ -13,7 +13,7 @@ const mimar = new Plant();
 setTimeout(() => {
   const gooby = new Plant();
   console.log(gooby);
-}, 3000);
+}, 4000);
 
 console.log(fumi);
 console.log(netta);
