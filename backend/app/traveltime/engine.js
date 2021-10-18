@@ -1,4 +1,5 @@
 const Traveltime = require("./index.js");
+const TravelTable = require("./table.js");
 
 class TravelEngine {
   constructor() {
@@ -15,6 +16,8 @@ class TravelEngine {
 
   buildNewTravel() {
     this.travel = new Traveltime();
+
+    TravelTable.storeTravel(this.travel);
 
     console.log("new travel", this.travel);
 
