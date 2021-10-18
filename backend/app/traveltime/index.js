@@ -6,6 +6,7 @@ const refreshRate = REFRESH_RATE * SECONDS;
 class Traveltime {
   constructor() {
     this.expiration = this.calculateExpiration();
+    this.travelId = undefined;
   }
 
   calculateExpiration() {
@@ -21,7 +22,7 @@ class Traveltime {
 
   newPlant() {
     if (Date.now() > this.expiration) {
-      throw new Error(`This generation expired on ${this.expiration}`);
+      throw new Error(`This trip finished on ${this.expiration}`);
     }
     return new Plant();
   }

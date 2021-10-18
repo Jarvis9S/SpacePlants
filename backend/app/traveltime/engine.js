@@ -15,16 +15,21 @@ class TravelEngine {
   }
 
   buildNewTravel() {
-    this.travel = new Traveltime();
+    const travel = new Traveltime();
 
-    TravelTable.storeTravel(this.travel);
+    TravelTable.storeTravel(travel)
+      .then(({ travelId }) => {
+        this.travel = travel;
+        this.travel.travelId = travelId;
 
-    console.log("new travel", this.travel);
+        console.log("new travel", this.travel);
 
-    this.timer = setTimeout(
-      () => this.buildNewTravel(),
-      this.travel.expiration.getTime() - Date.now()
-    );
+        this.timer = setTimeout(
+          () => this.buildNewTravel(),
+          this.travel.expiration.getTime() - Date.now()
+        );
+      })
+      .catch((error) => console.error(error));
   }
 }
 
