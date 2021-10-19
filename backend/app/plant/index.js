@@ -1,7 +1,8 @@
-const TRAITS = require("../data/traits.json");
+const TRAITS = require("../../data/traits.json");
 
 const DEFAULT_PROPERTIES = {
   nickname: "unnamed",
+  travelId: undefined,
   get collectdate() {
     return new Date();
   },
@@ -23,10 +24,11 @@ const DEFAULT_PROPERTIES = {
 };
 
 class Plant {
-  constructor({ collectdate, nickname, traits } = {}) {
+  constructor({ collectdate, nickname, traits, travelId } = {}) {
     this.collectdate = collectdate || DEFAULT_PROPERTIES.collectdate;
     this.nickname = nickname || DEFAULT_PROPERTIES.nickname;
     this.traits = traits || DEFAULT_PROPERTIES.randomTraits;
+    this.travelId = travelId || DEFAULT_PROPERTIES.travelId;
   }
 }
 

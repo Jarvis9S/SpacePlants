@@ -1,4 +1,4 @@
-const Plant = require("../plant.js");
+const Plant = require("../plant/index.js");
 const { REFRESH_RATE, SECONDS } = require("../config.js");
 
 const refreshRate = REFRESH_RATE * SECONDS;
@@ -24,7 +24,7 @@ class Traveltime {
     if (Date.now() > this.expiration) {
       throw new Error(`This trip finished on ${this.expiration}`);
     }
-    return new Plant();
+    return new Plant({ travelId: this.travelId });
   }
 }
 
