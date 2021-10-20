@@ -25,6 +25,26 @@ class PlantTable {
       )
     });
   }
+
+  static getPlant({ plantId }) {
+    return new Promise((resolve, reject) => {
+      pool.query(
+        'SELECT collectdate, nickname, "travelId" FROM planttable WHERE planttable.id = $1',
+        [plantId],
+        (error, response) => {
+          if (error) return reject(error);
+
+          if (response.rows.length === 0) return reject(new Error("There's no plant with such ID."));
+
+          resolve(response.rows[0]);
+        }
+      )
+    });
+  }
 }
+
+// PlantTable.getPlant({ plantId: 1 })
+// .then (plant => console.log(plant))
+// .catch(error => console.log("error". error));
 
 module.exports = PlantTable;
