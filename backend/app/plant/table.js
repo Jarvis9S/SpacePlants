@@ -1,4 +1,5 @@
 const pool = require("../../databasePool");
+const PlantTraitTable = require("../plantTrait/table.js");
 
 class PlantTable {
   static storePlant(plant) {
@@ -13,9 +14,15 @@ class PlantTable {
 
           const plantId = response.rows[0].id;
 
-          resolve({ plantId });
+          Promise.all(plant.traits.map(({ traitType, traitValue }) => {
+            return PlantTraitTable.storePlantTrait({
+              plantId, traitType, traitValue
+            });
+          }))
+          .then(() => resolve({ plantId }))
+          .catch(error => reject(error));
         }
-      );
+      )
     });
   }
 }
