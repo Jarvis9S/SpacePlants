@@ -20,8 +20,6 @@ class Travel extends Component {
         fetch("http://localhost:3000/travel")
         .then(response => response.json())
         .then (json => { 
-            console.log(json)
-        
             this.setState({ travel: json.travel });
         })
         .catch(error => console.error("error", error))
