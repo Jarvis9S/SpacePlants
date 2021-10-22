@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Button } from "react-bootstrap"
 import PlantAvatar from "./PlantAvatar.js";
 
 const DEFAULT_PLANT = {
@@ -26,7 +27,12 @@ class Plant extends Component {
     }
 
     render() {
-        return <PlantAvatar plant={this.state.plant} />;
+        return (
+        <div>
+            <button onClick={this.fetchPlant}>Harvest a plant</button>
+            <PlantAvatar plant={this.state.plant} />
+        </div>
+        )
     }
 }
 
