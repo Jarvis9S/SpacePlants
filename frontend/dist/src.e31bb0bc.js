@@ -49116,30 +49116,20 @@ var PlantAvatar = /*#__PURE__*/function (_Component) {
     key: "PlantImage",
     get: function get() {
       var plantPropertyMap = {};
-      this.props.plant.traits.forEach(function (trait) {//            const { traitType, traitValue } = trait;
-        //            plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
-      });
-      var backgroundType = plantPropertyMap.backgroundType,
-          flower = plantPropertyMap.flower,
-          stem = plantPropertyMap.stem,
-          addOns = plantPropertyMap.addOns;
+      {
+        /*        this.props.plant.traits.forEach(trait => {
+                   const { traitType, traitValue } = trait;
+                   
+                   plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
+                   });
+                   
+               const { backgroundType, flower, stem, addOns } = plantPropertyMap;       */
+      }
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "plant-avatar-image-wrapper"
       }, /*#__PURE__*/_react.default.createElement("img", {
         src: _assets.frame,
         className: "plant-avatar-image-frame"
-      }), /*#__PURE__*/_react.default.createElement("img", {
-        src: backgroundType,
-        className: "plant-avatar-image-background"
-      }), /*#__PURE__*/_react.default.createElement("img", {
-        src: addOns,
-        className: "plant-avatar-image-addons"
-      }), /*#__PURE__*/_react.default.createElement("img", {
-        src: stem,
-        className: "plant-avatar-image-stem"
-      }), /*#__PURE__*/_react.default.createElement("img", {
-        src: flower,
-        className: "plant-avatar-image-flower"
       }));
     }
   }, {

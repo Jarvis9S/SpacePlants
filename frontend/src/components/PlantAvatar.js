@@ -36,24 +36,22 @@ const propertyMap = {
 
 class PlantAvatar extends Component {
     get PlantImage() {
-        const plantPropertyMap = {}; 
-        
-        this.props.plant.traits.forEach(trait => {
+        let plantPropertyMap = {}; 
+{/*        this.props.plant.traits.forEach(trait => {
+            const { traitType, traitValue } = trait;
             
-//            const { traitType, traitValue } = trait;
-
-//            plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
-            
+            plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
             });
-            const { backgroundType, flower, stem, addOns } = plantPropertyMap;       
+            
+        const { backgroundType, flower, stem, addOns } = plantPropertyMap;       */}
                  
         return(
             <div className="plant-avatar-image-wrapper">
                 <img src={frame} className="plant-avatar-image-frame"/>
-                <img src={backgroundType} className="plant-avatar-image-background"/>
+{/*                <img src={backgroundType} className="plant-avatar-image-background"/>
                 <img src={addOns} className="plant-avatar-image-addons"/>
                 <img src={stem} className="plant-avatar-image-stem"/>
-                <img src={flower} className="plant-avatar-image-flower"/> 
+                <img src={flower} className="plant-avatar-image-flower"/>       */}
             </div>
         );
     }
