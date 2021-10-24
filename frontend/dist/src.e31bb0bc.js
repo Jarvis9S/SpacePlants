@@ -49093,7 +49093,7 @@ var propertyMap = {
     stick: _assets.stick,
     green: _assets.green
   },
-  addOns: {
+  addons: {
     spikes: _assets.spikes,
     thorns: _assets.thorns,
     leaves: _assets.leaves,
@@ -49116,20 +49116,32 @@ var PlantAvatar = /*#__PURE__*/function (_Component) {
     key: "PlantImage",
     get: function get() {
       var plantPropertyMap = {};
-      {
-        /*        this.props.plant.traits.forEach(trait => {
-                   const { traitType, traitValue } = trait;
-                   
-                   plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
-                   });
-                   
-               const { backgroundType, flower, stem, addOns } = plantPropertyMap;       */
-      }
+      this.props.plant.traits.forEach(function (trait) {
+        var traitType = trait.traitType,
+            traitValue = trait.traitValue;
+        plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
+      });
+      var backgroundType = plantPropertyMap.backgroundType,
+          flower = plantPropertyMap.flower,
+          stem = plantPropertyMap.stem,
+          addons = plantPropertyMap.addons;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "plant-avatar-image-wrapper"
       }, /*#__PURE__*/_react.default.createElement("img", {
+        src: backgroundType,
+        className: "plant-avatar-image-background"
+      }), /*#__PURE__*/_react.default.createElement("img", {
         src: _assets.frame,
         className: "plant-avatar-image-frame"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: addons,
+        className: "plant-avatar-image-addons"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: stem,
+        className: "plant-avatar-image-stem"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: flower,
+        className: "plant-avatar-image-flower"
       }));
     }
   }, {
@@ -49374,7 +49386,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53345" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49390" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

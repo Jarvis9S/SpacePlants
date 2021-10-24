@@ -26,7 +26,7 @@ const propertyMap = {
         stick,
         green
     },
-    addOns: {
+    addons: {
         spikes,
         thorns,
         leaves,
@@ -36,22 +36,23 @@ const propertyMap = {
 
 class PlantAvatar extends Component {
     get PlantImage() {
-        let plantPropertyMap = {}; 
-{/*        this.props.plant.traits.forEach(trait => {
+        const plantPropertyMap = {}; 
+
+        this.props.plant.traits.forEach(trait => {
             const { traitType, traitValue } = trait;
-            
+
             plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
-            });
-            
-        const { backgroundType, flower, stem, addOns } = plantPropertyMap;       */}
+        });
+
+        const { backgroundType, flower, stem, addons } = plantPropertyMap;       
                  
         return(
-            <div className="plant-avatar-image-wrapper">
+            <div className="plant-avatar-image-wrapper">       
+                <img src={backgroundType} className="plant-avatar-image-background"/>
                 <img src={frame} className="plant-avatar-image-frame"/>
-{/*                <img src={backgroundType} className="plant-avatar-image-background"/>
-                <img src={addOns} className="plant-avatar-image-addons"/>
+                <img src={addons} className="plant-avatar-image-addons"/>
                 <img src={stem} className="plant-avatar-image-stem"/>
-                <img src={flower} className="plant-avatar-image-flower"/>       */}
+                <img src={flower} className="plant-avatar-image-flower"/>       
             </div>
         );
     }
