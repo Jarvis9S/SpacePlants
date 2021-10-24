@@ -1,11 +1,10 @@
 import React, {Component} from "react";
+import { connect } from "react-redux";
+import { travelActionCreator } from "../actions/travel";
 
-const DEFAULT_TRAVEL = { travelId: "", expiration: ""}
 const MINIMUM_DELAY = 3000;
 
 class Travel extends Component {
-    // this.state = {}
-    state = { travel: DEFAULT_TRAVEL };
     timer = null;
 
     componentDidMount() {
@@ -19,8 +18,8 @@ class Travel extends Component {
     fetchTravel = () => {
         fetch("http://localhost:3000/travel")
         .then(response => response.json())
-        .then (json => { 
-            this.setState({ travel: json.travel });
+        .then (json => {
+            this.props.dispatchTravel(json.travel);
         })
         .catch(error => console.error("error", error))
     };
@@ -28,7 +27,7 @@ class Travel extends Component {
     fetchNextTravel = () => {
         this.fetchTravel();
 
-        let delay = new Date(this.state.travel.expiration).getTime() - new Date().getTime;
+        let delay = new Date(this.props.travel.expiration).getTime() - new Date().getTime;
 
         if (delay < MINIMUM_DELAY) {
             delay = MINIMUM_DELAY;
@@ -38,7 +37,8 @@ class Travel extends Component {
     }
 
     render() {
-        const { travel } = this.state;
+
+        const { travel } = this.props;
 
         return (
             <div>
@@ -50,4 +50,21 @@ class Travel extends Component {
     }
 }
 
-export default Travel;
+const mapStateToProps = (state) => {
+    const travel = state.travel;
+    return { travel };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchTravel: (travel) => {
+            dispatch(
+                travelActionCreator(travel)
+            )
+        }
+    } 
+};
+
+const componentConnector = connect(mapStateToProps, mapDispatchToProps);
+
+export default componentConnector(Travel);
