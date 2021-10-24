@@ -13,4 +13,23 @@ button {
     padding: 1rem;
 }
 
+/* PLANT IMAGES */
+
+.plant-avatar-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 10rem;
+}
+
+.plant-avatar-image-frame, 
+.plant-avatar-image-flower, 
+.plant-avatar-image-background,
+.plant-avatar-image-stem,
+.plant-avatar-image-addons {
+    position: absolute;
+    transform: scale(0.5);
+}
+
 /*# sourceMappingURL=/src.e31bb0bc.css.map */

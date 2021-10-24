@@ -1,38 +1,38 @@
 [
     {
-    "type": "backgroundColorType",
-    "values": [
-        "brown",
-        "grey",
-        "orange",
-        "blue"
-    ]
-},
-{
-    "type": "woodType",
-    "values": [
-        "plain",
-        "striped",
-        "circled",
-        "spotted"
-    ]
-},
-{
-    "type": "addonsType",
-    "values": [
-        "flowers",
-        "leaves",
-        "thorns",
-        "spikes"
-    ]
-},
-{
-    "type": "flowerType",
-    "values": [
-        "rose",
-        "daisy",
-        "lilac",
-        "tentacle"
-    ]
-}
+        "type": "backgroundType",
+        "values": [
+            "city",
+            "desert",
+            "sea",
+            "forest"
+        ]
+    },
+    {
+        "type": "stem",
+        "values": [
+            "gold",
+            "crystal",
+            "stick",
+            "green"
+        ]
+    },
+    {
+        "type": "addons",
+        "values": [
+            "tentacles",
+            "leaves",
+            "thorns",
+            "spikes"
+        ]
+    },
+    {
+        "type": "flower",
+        "values": [
+            "rose",
+            "daisy",
+            "lilac",
+            "blackhole"
+        ]
+    }
 ]

@@ -48858,7 +48858,185 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Accordion":"../node_modules/react-bootstrap/esm/Accordion.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js","./AccordionCollapse":"../node_modules/react-bootstrap/esm/AccordionCollapse.js","./AccordionButton":"../node_modules/react-bootstrap/esm/AccordionButton.js","./Alert":"../node_modules/react-bootstrap/esm/Alert.js","./Anchor":"../node_modules/react-bootstrap/esm/Anchor.js","./Badge":"../node_modules/react-bootstrap/esm/Badge.js","./Breadcrumb":"../node_modules/react-bootstrap/esm/Breadcrumb.js","./BreadcrumbItem":"../node_modules/react-bootstrap/esm/BreadcrumbItem.js","./Button":"../node_modules/react-bootstrap/esm/Button.js","./ButtonGroup":"../node_modules/react-bootstrap/esm/ButtonGroup.js","./ButtonToolbar":"../node_modules/react-bootstrap/esm/ButtonToolbar.js","./Card":"../node_modules/react-bootstrap/esm/Card.js","./CardImg":"../node_modules/react-bootstrap/esm/CardImg.js","./CardGroup":"../node_modules/react-bootstrap/esm/CardGroup.js","./Carousel":"../node_modules/react-bootstrap/esm/Carousel.js","./CarouselItem":"../node_modules/react-bootstrap/esm/CarouselItem.js","./CloseButton":"../node_modules/react-bootstrap/esm/CloseButton.js","./Col":"../node_modules/react-bootstrap/esm/Col.js","./Collapse":"../node_modules/react-bootstrap/esm/Collapse.js","./Dropdown":"../node_modules/react-bootstrap/esm/Dropdown.js","./DropdownButton":"../node_modules/react-bootstrap/esm/DropdownButton.js","./Fade":"../node_modules/react-bootstrap/esm/Fade.js","./Form":"../node_modules/react-bootstrap/esm/Form.js","./FormControl":"../node_modules/react-bootstrap/esm/FormControl.js","./FormCheck":"../node_modules/react-bootstrap/esm/FormCheck.js","./FormFloating":"../node_modules/react-bootstrap/esm/FormFloating.js","./FloatingLabel":"../node_modules/react-bootstrap/esm/FloatingLabel.js","./FormGroup":"../node_modules/react-bootstrap/esm/FormGroup.js","./FormLabel":"../node_modules/react-bootstrap/esm/FormLabel.js","./FormText":"../node_modules/react-bootstrap/esm/FormText.js","./FormSelect":"../node_modules/react-bootstrap/esm/FormSelect.js","./Container":"../node_modules/react-bootstrap/esm/Container.js","./Image":"../node_modules/react-bootstrap/esm/Image.js","./Figure":"../node_modules/react-bootstrap/esm/Figure.js","./InputGroup":"../node_modules/react-bootstrap/esm/InputGroup.js","./ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","./ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js","./Modal":"../node_modules/react-bootstrap/esm/Modal.js","./ModalBody":"../node_modules/react-bootstrap/esm/ModalBody.js","./ModalDialog":"../node_modules/react-bootstrap/esm/ModalDialog.js","./ModalFooter":"../node_modules/react-bootstrap/esm/ModalFooter.js","./ModalTitle":"../node_modules/react-bootstrap/esm/ModalTitle.js","./Nav":"../node_modules/react-bootstrap/esm/Nav.js","./Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","./NavbarBrand":"../node_modules/react-bootstrap/esm/NavbarBrand.js","./NavDropdown":"../node_modules/react-bootstrap/esm/NavDropdown.js","./NavItem":"../node_modules/react-bootstrap/esm/NavItem.js","./NavLink":"../node_modules/react-bootstrap/esm/NavLink.js","./Offcanvas":"../node_modules/react-bootstrap/esm/Offcanvas.js","./OffcanvasHeader":"../node_modules/react-bootstrap/esm/OffcanvasHeader.js","./OffcanvasTitle":"../node_modules/react-bootstrap/esm/OffcanvasTitle.js","./OffcanvasBody":"../node_modules/react-bootstrap/esm/OffcanvasBody.js","./Overlay":"../node_modules/react-bootstrap/esm/Overlay.js","./OverlayTrigger":"../node_modules/react-bootstrap/esm/OverlayTrigger.js","./PageItem":"../node_modules/react-bootstrap/esm/PageItem.js","./Pagination":"../node_modules/react-bootstrap/esm/Pagination.js","./Placeholder":"../node_modules/react-bootstrap/esm/Placeholder.js","./PlaceholderButton":"../node_modules/react-bootstrap/esm/PlaceholderButton.js","./Popover":"../node_modules/react-bootstrap/esm/Popover.js","./PopoverHeader":"../node_modules/react-bootstrap/esm/PopoverHeader.js","./PopoverBody":"../node_modules/react-bootstrap/esm/PopoverBody.js","./ProgressBar":"../node_modules/react-bootstrap/esm/ProgressBar.js","./Ratio":"../node_modules/react-bootstrap/esm/Ratio.js","./Row":"../node_modules/react-bootstrap/esm/Row.js","./Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","./SplitButton":"../node_modules/react-bootstrap/esm/SplitButton.js","./SSRProvider":"../node_modules/react-bootstrap/esm/SSRProvider.js","./Stack":"../node_modules/react-bootstrap/esm/Stack.js","./Tab":"../node_modules/react-bootstrap/esm/Tab.js","./TabContainer":"../node_modules/react-bootstrap/esm/TabContainer.js","./TabContent":"../node_modules/react-bootstrap/esm/TabContent.js","./Table":"../node_modules/react-bootstrap/esm/Table.js","./TabPane":"../node_modules/react-bootstrap/esm/TabPane.js","./Tabs":"../node_modules/react-bootstrap/esm/Tabs.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./Toast":"../node_modules/react-bootstrap/esm/Toast.js","./ToastBody":"../node_modules/react-bootstrap/esm/ToastBody.js","./ToastHeader":"../node_modules/react-bootstrap/esm/ToastHeader.js","./ToastContainer":"../node_modules/react-bootstrap/esm/ToastContainer.js","./ToggleButton":"../node_modules/react-bootstrap/esm/ToggleButton.js","./ToggleButtonGroup":"../node_modules/react-bootstrap/esm/ToggleButtonGroup.js","./Tooltip":"../node_modules/react-bootstrap/esm/Tooltip.js"}],"components/PlantAvatar.js":[function(require,module,exports) {
+},{"./Accordion":"../node_modules/react-bootstrap/esm/Accordion.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js","./AccordionCollapse":"../node_modules/react-bootstrap/esm/AccordionCollapse.js","./AccordionButton":"../node_modules/react-bootstrap/esm/AccordionButton.js","./Alert":"../node_modules/react-bootstrap/esm/Alert.js","./Anchor":"../node_modules/react-bootstrap/esm/Anchor.js","./Badge":"../node_modules/react-bootstrap/esm/Badge.js","./Breadcrumb":"../node_modules/react-bootstrap/esm/Breadcrumb.js","./BreadcrumbItem":"../node_modules/react-bootstrap/esm/BreadcrumbItem.js","./Button":"../node_modules/react-bootstrap/esm/Button.js","./ButtonGroup":"../node_modules/react-bootstrap/esm/ButtonGroup.js","./ButtonToolbar":"../node_modules/react-bootstrap/esm/ButtonToolbar.js","./Card":"../node_modules/react-bootstrap/esm/Card.js","./CardImg":"../node_modules/react-bootstrap/esm/CardImg.js","./CardGroup":"../node_modules/react-bootstrap/esm/CardGroup.js","./Carousel":"../node_modules/react-bootstrap/esm/Carousel.js","./CarouselItem":"../node_modules/react-bootstrap/esm/CarouselItem.js","./CloseButton":"../node_modules/react-bootstrap/esm/CloseButton.js","./Col":"../node_modules/react-bootstrap/esm/Col.js","./Collapse":"../node_modules/react-bootstrap/esm/Collapse.js","./Dropdown":"../node_modules/react-bootstrap/esm/Dropdown.js","./DropdownButton":"../node_modules/react-bootstrap/esm/DropdownButton.js","./Fade":"../node_modules/react-bootstrap/esm/Fade.js","./Form":"../node_modules/react-bootstrap/esm/Form.js","./FormControl":"../node_modules/react-bootstrap/esm/FormControl.js","./FormCheck":"../node_modules/react-bootstrap/esm/FormCheck.js","./FormFloating":"../node_modules/react-bootstrap/esm/FormFloating.js","./FloatingLabel":"../node_modules/react-bootstrap/esm/FloatingLabel.js","./FormGroup":"../node_modules/react-bootstrap/esm/FormGroup.js","./FormLabel":"../node_modules/react-bootstrap/esm/FormLabel.js","./FormText":"../node_modules/react-bootstrap/esm/FormText.js","./FormSelect":"../node_modules/react-bootstrap/esm/FormSelect.js","./Container":"../node_modules/react-bootstrap/esm/Container.js","./Image":"../node_modules/react-bootstrap/esm/Image.js","./Figure":"../node_modules/react-bootstrap/esm/Figure.js","./InputGroup":"../node_modules/react-bootstrap/esm/InputGroup.js","./ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","./ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js","./Modal":"../node_modules/react-bootstrap/esm/Modal.js","./ModalBody":"../node_modules/react-bootstrap/esm/ModalBody.js","./ModalDialog":"../node_modules/react-bootstrap/esm/ModalDialog.js","./ModalFooter":"../node_modules/react-bootstrap/esm/ModalFooter.js","./ModalTitle":"../node_modules/react-bootstrap/esm/ModalTitle.js","./Nav":"../node_modules/react-bootstrap/esm/Nav.js","./Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","./NavbarBrand":"../node_modules/react-bootstrap/esm/NavbarBrand.js","./NavDropdown":"../node_modules/react-bootstrap/esm/NavDropdown.js","./NavItem":"../node_modules/react-bootstrap/esm/NavItem.js","./NavLink":"../node_modules/react-bootstrap/esm/NavLink.js","./Offcanvas":"../node_modules/react-bootstrap/esm/Offcanvas.js","./OffcanvasHeader":"../node_modules/react-bootstrap/esm/OffcanvasHeader.js","./OffcanvasTitle":"../node_modules/react-bootstrap/esm/OffcanvasTitle.js","./OffcanvasBody":"../node_modules/react-bootstrap/esm/OffcanvasBody.js","./Overlay":"../node_modules/react-bootstrap/esm/Overlay.js","./OverlayTrigger":"../node_modules/react-bootstrap/esm/OverlayTrigger.js","./PageItem":"../node_modules/react-bootstrap/esm/PageItem.js","./Pagination":"../node_modules/react-bootstrap/esm/Pagination.js","./Placeholder":"../node_modules/react-bootstrap/esm/Placeholder.js","./PlaceholderButton":"../node_modules/react-bootstrap/esm/PlaceholderButton.js","./Popover":"../node_modules/react-bootstrap/esm/Popover.js","./PopoverHeader":"../node_modules/react-bootstrap/esm/PopoverHeader.js","./PopoverBody":"../node_modules/react-bootstrap/esm/PopoverBody.js","./ProgressBar":"../node_modules/react-bootstrap/esm/ProgressBar.js","./Ratio":"../node_modules/react-bootstrap/esm/Ratio.js","./Row":"../node_modules/react-bootstrap/esm/Row.js","./Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","./SplitButton":"../node_modules/react-bootstrap/esm/SplitButton.js","./SSRProvider":"../node_modules/react-bootstrap/esm/SSRProvider.js","./Stack":"../node_modules/react-bootstrap/esm/Stack.js","./Tab":"../node_modules/react-bootstrap/esm/Tab.js","./TabContainer":"../node_modules/react-bootstrap/esm/TabContainer.js","./TabContent":"../node_modules/react-bootstrap/esm/TabContent.js","./Table":"../node_modules/react-bootstrap/esm/Table.js","./TabPane":"../node_modules/react-bootstrap/esm/TabPane.js","./Tabs":"../node_modules/react-bootstrap/esm/Tabs.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./Toast":"../node_modules/react-bootstrap/esm/Toast.js","./ToastBody":"../node_modules/react-bootstrap/esm/ToastBody.js","./ToastHeader":"../node_modules/react-bootstrap/esm/ToastHeader.js","./ToastContainer":"../node_modules/react-bootstrap/esm/ToastContainer.js","./ToggleButton":"../node_modules/react-bootstrap/esm/ToggleButton.js","./ToggleButtonGroup":"../node_modules/react-bootstrap/esm/ToggleButtonGroup.js","./Tooltip":"../node_modules/react-bootstrap/esm/Tooltip.js"}],"assets/B_City.png":[function(require,module,exports) {
+module.exports = "/B_City.d3b0ba7b.png";
+},{}],"assets/B_Desert.png":[function(require,module,exports) {
+module.exports = "/B_Desert.1a76be36.png";
+},{}],"assets/B_Sea.png":[function(require,module,exports) {
+module.exports = "/B_Sea.61a5bb26.png";
+},{}],"assets/B_Forest.png":[function(require,module,exports) {
+module.exports = "/B_Forest.7bd2c539.png";
+},{}],"assets/F_Rose.png":[function(require,module,exports) {
+module.exports = "/F_Rose.a74756d9.png";
+},{}],"assets/F_Lilac.png":[function(require,module,exports) {
+module.exports = "/F_Lilac.490ea22f.png";
+},{}],"assets/F_Daisy.png":[function(require,module,exports) {
+module.exports = "/F_Daisy.a5928bb3.png";
+},{}],"assets/F_Blackhole.png":[function(require,module,exports) {
+module.exports = "/F_Blackhole.228df1ee.png";
+},{}],"assets/S_Gold.png":[function(require,module,exports) {
+module.exports = "/S_Gold.14f7b210.png";
+},{}],"assets/S_Crystal.png":[function(require,module,exports) {
+module.exports = "/S_Crystal.f69916fa.png";
+},{}],"assets/S_Stick.png":[function(require,module,exports) {
+module.exports = "/S_Stick.cbe37f4b.png";
+},{}],"assets/S_Stem.png":[function(require,module,exports) {
+module.exports = "/S_Stem.d4f55c8e.png";
+},{}],"assets/M_Spikes.png":[function(require,module,exports) {
+module.exports = "/M_Spikes.6b23396e.png";
+},{}],"assets/M_Thorns.png":[function(require,module,exports) {
+module.exports = "/M_Thorns.a2f8243e.png";
+},{}],"assets/M_Leaves.png":[function(require,module,exports) {
+module.exports = "/M_Leaves.7ce66703.png";
+},{}],"assets/M_Tentacles.png":[function(require,module,exports) {
+module.exports = "/M_Tentacles.3e6daa8b.png";
+},{}],"assets/Frame.png":[function(require,module,exports) {
+module.exports = "/Frame.cfcf10e7.png";
+},{}],"assets/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "blackhole", {
+  enumerable: true,
+  get: function () {
+    return _F_Blackhole.default;
+  }
+});
+Object.defineProperty(exports, "city", {
+  enumerable: true,
+  get: function () {
+    return _B_City.default;
+  }
+});
+Object.defineProperty(exports, "crystal", {
+  enumerable: true,
+  get: function () {
+    return _S_Crystal.default;
+  }
+});
+Object.defineProperty(exports, "daisy", {
+  enumerable: true,
+  get: function () {
+    return _F_Daisy.default;
+  }
+});
+Object.defineProperty(exports, "desert", {
+  enumerable: true,
+  get: function () {
+    return _B_Desert.default;
+  }
+});
+Object.defineProperty(exports, "forest", {
+  enumerable: true,
+  get: function () {
+    return _B_Forest.default;
+  }
+});
+Object.defineProperty(exports, "frame", {
+  enumerable: true,
+  get: function () {
+    return _Frame.default;
+  }
+});
+Object.defineProperty(exports, "gold", {
+  enumerable: true,
+  get: function () {
+    return _S_Gold.default;
+  }
+});
+Object.defineProperty(exports, "green", {
+  enumerable: true,
+  get: function () {
+    return _S_Stem.default;
+  }
+});
+Object.defineProperty(exports, "leaves", {
+  enumerable: true,
+  get: function () {
+    return _M_Leaves.default;
+  }
+});
+Object.defineProperty(exports, "lilac", {
+  enumerable: true,
+  get: function () {
+    return _F_Lilac.default;
+  }
+});
+Object.defineProperty(exports, "rose", {
+  enumerable: true,
+  get: function () {
+    return _F_Rose.default;
+  }
+});
+Object.defineProperty(exports, "sea", {
+  enumerable: true,
+  get: function () {
+    return _B_Sea.default;
+  }
+});
+Object.defineProperty(exports, "spikes", {
+  enumerable: true,
+  get: function () {
+    return _M_Spikes.default;
+  }
+});
+Object.defineProperty(exports, "stick", {
+  enumerable: true,
+  get: function () {
+    return _S_Stick.default;
+  }
+});
+Object.defineProperty(exports, "tentacles", {
+  enumerable: true,
+  get: function () {
+    return _M_Tentacles.default;
+  }
+});
+Object.defineProperty(exports, "thorns", {
+  enumerable: true,
+  get: function () {
+    return _M_Thorns.default;
+  }
+});
+
+var _B_City = _interopRequireDefault(require("./B_City.png"));
+
+var _B_Desert = _interopRequireDefault(require("./B_Desert.png"));
+
+var _B_Sea = _interopRequireDefault(require("./B_Sea.png"));
+
+var _B_Forest = _interopRequireDefault(require("./B_Forest.png"));
+
+var _F_Rose = _interopRequireDefault(require("./F_Rose.png"));
+
+var _F_Lilac = _interopRequireDefault(require("./F_Lilac.png"));
+
+var _F_Daisy = _interopRequireDefault(require("./F_Daisy.png"));
+
+var _F_Blackhole = _interopRequireDefault(require("./F_Blackhole.png"));
+
+var _S_Gold = _interopRequireDefault(require("./S_Gold.png"));
+
+var _S_Crystal = _interopRequireDefault(require("./S_Crystal.png"));
+
+var _S_Stick = _interopRequireDefault(require("./S_Stick.png"));
+
+var _S_Stem = _interopRequireDefault(require("./S_Stem.png"));
+
+var _M_Spikes = _interopRequireDefault(require("./M_Spikes.png"));
+
+var _M_Thorns = _interopRequireDefault(require("./M_Thorns.png"));
+
+var _M_Leaves = _interopRequireDefault(require("./M_Leaves.png"));
+
+var _M_Tentacles = _interopRequireDefault(require("./M_Tentacles.png"));
+
+var _Frame = _interopRequireDefault(require("./Frame.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./B_City.png":"assets/B_City.png","./B_Desert.png":"assets/B_Desert.png","./B_Sea.png":"assets/B_Sea.png","./B_Forest.png":"assets/B_Forest.png","./F_Rose.png":"assets/F_Rose.png","./F_Lilac.png":"assets/F_Lilac.png","./F_Daisy.png":"assets/F_Daisy.png","./F_Blackhole.png":"assets/F_Blackhole.png","./S_Gold.png":"assets/S_Gold.png","./S_Crystal.png":"assets/S_Crystal.png","./S_Stick.png":"assets/S_Stick.png","./S_Stem.png":"assets/S_Stem.png","./M_Spikes.png":"assets/M_Spikes.png","./M_Thorns.png":"assets/M_Thorns.png","./M_Leaves.png":"assets/M_Leaves.png","./M_Tentacles.png":"assets/M_Tentacles.png","./Frame.png":"assets/Frame.png"}],"components/PlantAvatar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48867,6 +49045,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _assets = require("../assets");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -48894,6 +49074,33 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+var propertyMap = {
+  backgroundType: {
+    city: _assets.city,
+    desert: _assets.desert,
+    sea: _assets.sea,
+    forest: _assets.forest
+  },
+  flower: {
+    rose: _assets.rose,
+    lilac: _assets.lilac,
+    daisy: _assets.daisy,
+    blackhole: _assets.blackhole
+  },
+  stem: {
+    gold: _assets.gold,
+    crystal: _assets.crystal,
+    stick: _assets.stick,
+    green: _assets.green
+  },
+  addOns: {
+    spikes: _assets.spikes,
+    thorns: _assets.thorns,
+    leaves: _assets.leaves,
+    tentacles: _assets.tentacles
+  }
+};
+
 var PlantAvatar = /*#__PURE__*/function (_Component) {
   _inherits(PlantAvatar, _Component);
 
@@ -48906,6 +49113,36 @@ var PlantAvatar = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(PlantAvatar, [{
+    key: "PlantImage",
+    get: function get() {
+      var plantPropertyMap = {};
+      this.props.plant.traits.forEach(function (trait) {//            const { traitType, traitValue } = trait;
+        //            plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
+      });
+      var backgroundType = plantPropertyMap.backgroundType,
+          flower = plantPropertyMap.flower,
+          stem = plantPropertyMap.stem,
+          addOns = plantPropertyMap.addOns;
+      return /*#__PURE__*/_react.default.createElement("div", {
+        className: "plant-avatar-image-wrapper"
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _assets.frame,
+        className: "plant-avatar-image-frame"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: backgroundType,
+        className: "plant-avatar-image-background"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: addOns,
+        className: "plant-avatar-image-addons"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: stem,
+        className: "plant-avatar-image-stem"
+      }), /*#__PURE__*/_react.default.createElement("img", {
+        src: flower,
+        className: "plant-avatar-image-flower"
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props$plant = this.props.plant,
@@ -48914,7 +49151,7 @@ var PlantAvatar = /*#__PURE__*/function (_Component) {
           traits = _this$props$plant.traits;
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", null, "T", travelId, "."), /*#__PURE__*/_react.default.createElement("span", null, "I", plantId, ". "), traits.map(function (trait) {
         return trait.traitValue;
-      }).join(", "));
+      }).join(", "), this.PlantImage);
     }
   }]);
 
@@ -48923,7 +49160,7 @@ var PlantAvatar = /*#__PURE__*/function (_Component) {
 
 var _default = PlantAvatar;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"components/Plant.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../assets":"assets/index.js"}],"components/Plant.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49018,7 +49255,7 @@ var Plant = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
         onClick: this.fetchPlant
       }, "Harvest a plant"), /*#__PURE__*/_react.default.createElement(_PlantAvatar.default, {
         plant: this.state.plant
@@ -49147,7 +49384,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61004" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53345" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
