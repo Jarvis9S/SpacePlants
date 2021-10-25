@@ -40,7 +40,6 @@ class PlantAvatar extends Component {
 
         this.props.plant.traits.forEach(trait => {
             const { traitType, traitValue } = trait;
-
             plantPropertyMap[traitType] = propertyMap[traitType][traitValue];
         });
 
@@ -60,6 +59,8 @@ class PlantAvatar extends Component {
     render(){
 
         const { travelId, plantId, traits } = this.props.plant;
+    
+//        if (!plantId) return <div></div>;
         return (
             <div>
                 <span>T{travelId}.</span>

@@ -1,9 +1,10 @@
-import { TRAVEL } from "./types";
+import { TRAVEL } from "./types.js";
+import { BACKEND } from "../config.js";
 
 export const fetchTravel = () => dispatch => {
 dispatch({ type: TRAVEL.FETCH });
 
-    return fetch("http://localhost:3000/travel")
+    return fetch(`${BACKEND.ADDRESS}/travel`)
     .then(response => response.json())
     .then(json => {
         if (json.type === "error") {
@@ -19,7 +20,7 @@ dispatch({ type: TRAVEL.FETCH });
       }
     })
     .catch(error => dispatch({
-        type: TRAVEL_FETCH_ERROR,
+        type: TRAVEL.FETCH_ERROR,
         message: error.message
     }));
 }
