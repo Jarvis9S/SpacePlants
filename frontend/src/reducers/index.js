@@ -1,11 +1,6 @@
-import { TRAVEL_ACTION_TYPE } from "../actions/types";
+import travel from "./travel.js";
+import { combineReducers } from "redux";
 
-const DEFAULT_TRAVEL = { travelId: "", expiration: "" }
-
-export const travelReducer = (state, action) =>{
-
-    if(action.type === TRAVEL_ACTION_TYPE) {
-        return { travel: action.travel }
-    }
-    return { travel: DEFAULT_TRAVEL };
-}
+export default combineReducers({
+    travel
+});

@@ -33182,33 +33182,86 @@ var _batch = require("./utils/batch");
 // Enable batched updates in our subscriptions for use
 // with standard React renderers (ReactDOM, React Native)
 (0, _batch.setBatch)(_reactBatchedUpdates.unstable_batchedUpdates);
-},{"./exports":"../node_modules/react-redux/es/exports.js","./utils/reactBatchedUpdates":"../node_modules/react-redux/es/utils/reactBatchedUpdates.js","./utils/batch":"../node_modules/react-redux/es/utils/batch.js"}],"actions/types.js":[function(require,module,exports) {
+},{"./exports":"../node_modules/react-redux/es/exports.js","./utils/reactBatchedUpdates":"../node_modules/react-redux/es/utils/reactBatchedUpdates.js","./utils/batch":"../node_modules/react-redux/es/utils/batch.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TRAVEL_ACTION_TYPE = void 0;
-var TRAVEL_ACTION_TYPE = "TRAVEL_ACTION_TYPE";
-exports.TRAVEL_ACTION_TYPE = TRAVEL_ACTION_TYPE;
+exports.default = void 0;
+
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+var _default = thunk;
+exports.default = _default;
+},{}],"actions/types.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TRAVEL = void 0;
+var TRAVEL = {
+  FETCH: "TRAVEL_FETCH",
+  FETCH_ERROR: "TRAVEL_FETCH_ERROR",
+  FETCH_SUCCESS: "TRAVEL_FETCH_SUCCESS"
+};
+exports.TRAVEL = TRAVEL;
 },{}],"actions/travel.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.travelActionCreator = void 0;
+exports.fetchTravel = void 0;
 
 var _types = require("./types");
 
-var travelActionCreator = function travelActionCreator(payload) {
-  return {
-    type: _types.TRAVEL_ACTION_TYPE,
-    travel: payload
+var fetchTravel = function fetchTravel() {
+  return function (dispatch) {
+    dispatch({
+      type: _types.TRAVEL.FETCH
+    });
+    return fetch("http://localhost:3000/travel").then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      if (json.type === "error") {
+        dispatch({
+          type: _types.TRAVEL.FETCH_ERROR,
+          message: json.message
+        });
+      } else {
+        dispatch({
+          type: _types.TRAVEL.FETCH_SUCCESS,
+          travel: json.travel
+        });
+      }
+    }).catch(function (error) {
+      return dispatch({
+        type: TRAVEL_FETCH_ERROR,
+        message: error.message
+      });
+    });
   };
 };
 
-exports.travelActionCreator = travelActionCreator;
+exports.fetchTravel = fetchTravel;
 },{"./types":"actions/types.js"}],"components/Travel.js":[function(require,module,exports) {
 "use strict";
 
@@ -33271,18 +33324,8 @@ var Travel = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "timer", null);
 
-    _defineProperty(_assertThisInitialized(_this), "fetchTravel", function () {
-      fetch("http://localhost:3000/travel").then(function (response) {
-        return response.json();
-      }).then(function (json) {
-        _this.props.dispatchTravel(json.travel);
-      }).catch(function (error) {
-        return console.error("error", error);
-      });
-    });
-
     _defineProperty(_assertThisInitialized(_this), "fetchNextTravel", function () {
-      _this.fetchTravel();
+      _this.props.fetchTravel();
 
       var delay = new Date(_this.props.travel.expiration).getTime() - new Date().getTime;
 
@@ -33290,10 +33333,7 @@ var Travel = /*#__PURE__*/function (_Component) {
         delay = MINIMUM_DELAY;
       }
 
-      ;
-      _this.timer = setTimeout(function () {
-        return _this.fetchNextTravel();
-      }, delay);
+      ; //        this.timer = setTimeout(() => this.fetchNextTravel(), delay);
     });
 
     return _this;
@@ -33327,15 +33367,9 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    dispatchTravel: function dispatchTravel(travel) {
-      dispatch((0, _travel.travelActionCreator)(travel));
-    }
-  };
-};
-
-var componentConnector = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps);
+var componentConnector = (0, _reactRedux.connect)(mapStateToProps, {
+  fetchTravel: _travel.fetchTravel
+});
 
 var _default = componentConnector(Travel);
 
@@ -51907,35 +51941,72 @@ var Plant = /*#__PURE__*/function (_Component) {
 
 var _default = Plant;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./PlantAvatar.js":"components/PlantAvatar.js"}],"reducers/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./PlantAvatar.js":"components/PlantAvatar.js"}],"reducers/travel.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.travelReducer = void 0;
+exports.default = void 0;
 
 var _types = require("../actions/types");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var DEFAULT_TRAVEL = {
   travelId: "",
   expiration: ""
 };
 
-var travelReducer = function travelReducer(state, action) {
-  if (action.type === _types.TRAVEL_ACTION_TYPE) {
-    return {
-      travel: action.travel
-    };
-  }
+var travelReducer = function travelReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_TRAVEL;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
 
-  return {
-    travel: DEFAULT_TRAVEL
-  };
+  switch (action.type) {
+    case _types.TRAVEL.FETCH:
+      return state;
+
+    case _types.TRAVEL.FETCH_ERROR:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        message: action.message
+      });
+
+    case _types.TRAVEL.FETCH_SUCCESS:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        generation: action.generation
+      });
+
+    default:
+      return state;
+  }
 };
 
-exports.travelReducer = travelReducer;
-},{"../actions/types":"actions/types.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var _default = travelReducer;
+exports.default = _default;
+},{"../actions/types":"actions/types.js"}],"reducers/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _travel = _interopRequireDefault(require("./travel.js"));
+
+var _redux = require("redux");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _redux.combineReducers)({
+  travel: _travel.default
+});
+
+exports.default = _default;
+},{"./travel.js":"reducers/travel.js","redux":"../node_modules/redux/es/redux.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -52018,31 +52089,24 @@ var _reactRedux = require("react-redux");
 
 var _reactDom = require("react-dom");
 
+var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
+
 var _Travel = _interopRequireDefault(require("./components/Travel.js"));
 
 var _Plant = _interopRequireDefault(require("./components/Plant.js"));
 
-var _index = require("./reducers/index.js");
-
-var _travel = require("./actions/travel.js");
+var _reducers = _interopRequireDefault(require("./reducers"));
 
 require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _redux.createStore)(_index.travelReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-store.subscribe(function () {
-  return console.log(store.getState());
-});
-fetch("http://localhost:3000/travel").then(function (response) {
-  return response.json();
-}).then(function (json) {
-  store.dispatch((0, _travel.travelActionCreator)(json.travel));
-});
+var composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+var store = (0, _redux.createStore)(_reducers.default, composeEnhancer((0, _redux.applyMiddleware)(_reduxThunk.default)));
 (0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(_reactRedux.Provider, {
   store: store
 }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Plants in space!"), /*#__PURE__*/_react.default.createElement(_Travel.default, null), /*#__PURE__*/_react.default.createElement(_Plant.default, null))), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Travel.js":"components/Travel.js","./components/Plant.js":"components/Plant.js","./reducers/index.js":"reducers/index.js","./actions/travel.js":"actions/travel.js","./index.css":"index.css"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","react-dom":"../node_modules/react-dom/index.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","./components/Travel.js":"components/Travel.js","./components/Plant.js":"components/Plant.js","./reducers":"reducers/index.js","./index.css":"index.css"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -52070,7 +52134,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57649" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52202" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

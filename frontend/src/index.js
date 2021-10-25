@@ -1,26 +1,19 @@
 import React from "react";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { render } from "react-dom";
+import thunk from "redux-thunk";
 import Travel from "./components/Travel.js";
 import Plant from "./components/Plant.js";
-import { travelReducer } from "./reducers/index.js";
-import { travelActionCreator } from "./actions/travel.js";
+import rootReducer from "./reducers";
 import "./index.css";
 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
-    travelReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    rootReducer,
+    composeEnhancer(applyMiddleware(thunk))
 );
-
-store.subscribe(() => console.log(store.getState()));
-
-fetch("http://localhost:3000/travel")
-.then(response => response.json())
-.then (json =>{
-    store.dispatch(travelActionCreator(json.travel))
-});
-
 
 render(
     <Provider store={store}>
