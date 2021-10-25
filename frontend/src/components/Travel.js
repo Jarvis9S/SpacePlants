@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import { fetchTravel } from "../actions/travel";
+import fetchStates from "../reducers/fetchStates";
 
 const MINIMUM_DELAY = 3000;
 
@@ -30,6 +31,14 @@ class Travel extends Component {
     render() {
 
         const { travel } = this.props;
+
+//        if (travel.status === fetchStates.fetching) {
+//            console.log("fetching...")
+//        }
+
+        if (travel.status === fetchStates.error) {
+            return <div>{ travel.message }</div>
+        }
 
         return (
             <div>

@@ -33262,7 +33262,20 @@ var fetchTravel = function fetchTravel() {
 };
 
 exports.fetchTravel = fetchTravel;
-},{"./types":"actions/types.js"}],"components/Travel.js":[function(require,module,exports) {
+},{"./types":"actions/types.js"}],"reducers/fetchStates.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  fetching: "fetching",
+  error: "error",
+  success: "success"
+};
+exports.default = _default;
+},{}],"components/Travel.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33275,6 +33288,10 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactRedux = require("react-redux");
 
 var _travel = require("../actions/travel");
+
+var _fetchStates = _interopRequireDefault(require("../reducers/fetchStates"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -33355,7 +33372,14 @@ var Travel = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var travel = this.props.travel;
+      var travel = this.props.travel; //        if (travel.status === fetchStates.fetching) {
+      //            console.log("fetching...")
+      //        }
+
+      if (travel.status === _fetchStates.default.error) {
+        return /*#__PURE__*/_react.default.createElement("div", null, travel.message);
+      }
+
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Travel ", travel.travelId, ". Expires on:"), /*#__PURE__*/_react.default.createElement("h4", null, new Date(travel.expiration).toString()), /*#__PURE__*/_react.default.createElement("h1", null, Date()));
     }
   }]);
@@ -33377,7 +33401,7 @@ var componentConnector = (0, _reactRedux.connect)(mapStateToProps, {
 var _default = componentConnector(Travel);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/travel":"actions/travel.js"}],"../node_modules/classnames/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/travel":"actions/travel.js","../reducers/fetchStates":"reducers/fetchStates.js"}],"../node_modules/classnames/index.js":[function(require,module,exports) {
 var define;
 /*!
   Copyright (c) 2018 Jed Watson.
@@ -51954,6 +51978,10 @@ exports.default = void 0;
 
 var _types = require("../actions/types");
 
+var _fetchStates = _interopRequireDefault(require("./fetchStates.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -51971,15 +51999,19 @@ var travelReducer = function travelReducer() {
 
   switch (action.type) {
     case _types.TRAVEL.FETCH:
-      return state;
+      return _objectSpread(_objectSpread({}, state), {}, {
+        status: _fetchStates.default.fetching
+      });
 
     case _types.TRAVEL.FETCH_ERROR:
       return _objectSpread(_objectSpread({}, state), {}, {
-        message: action.message
+        status: _fetchStates.default.error
       });
 
     case _types.TRAVEL.FETCH_SUCCESS:
-      return _objectSpread(_objectSpread({}, state), action.travel);
+      return _objectSpread(_objectSpread({}, state), {}, {
+        status: _fetchStates.default.success
+      });
 
     default:
       return state;
@@ -51988,7 +52020,7 @@ var travelReducer = function travelReducer() {
 
 var _default = travelReducer;
 exports.default = _default;
-},{"../actions/types":"actions/types.js"}],"reducers/index.js":[function(require,module,exports) {
+},{"../actions/types":"actions/types.js","./fetchStates.js":"reducers/fetchStates.js"}],"reducers/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52135,7 +52167,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52202" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55329" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
