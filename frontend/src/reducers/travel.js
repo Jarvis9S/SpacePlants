@@ -9,7 +9,7 @@ const travelReducer = (state = DEFAULT_TRAVEL, action) =>{
         case TRAVEL.FETCH_ERROR: 
             return {...state, message: action.message}
         case TRAVEL.FETCH_SUCCESS:
-            return {...state, generation: action.generation};
+            return {...state, ...action.travel};
         default:
             return state;
     }

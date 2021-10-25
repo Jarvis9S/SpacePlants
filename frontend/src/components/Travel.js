@@ -24,7 +24,7 @@ class Travel extends Component {
             delay = MINIMUM_DELAY;
         };
 
-//        this.timer = setTimeout(() => this.fetchNextTravel(), delay);
+       this.timer = setTimeout(() => this.fetchNextTravel(), delay);
     }
 
     render() {

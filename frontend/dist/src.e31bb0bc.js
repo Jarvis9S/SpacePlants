@@ -33333,7 +33333,10 @@ var Travel = /*#__PURE__*/function (_Component) {
         delay = MINIMUM_DELAY;
       }
 
-      ; //        this.timer = setTimeout(() => this.fetchNextTravel(), delay);
+      ;
+      _this.timer = setTimeout(function () {
+        return _this.fetchNextTravel();
+      }, delay);
     });
 
     return _this;
@@ -51976,9 +51979,7 @@ var travelReducer = function travelReducer() {
       });
 
     case _types.TRAVEL.FETCH_SUCCESS:
-      return _objectSpread(_objectSpread({}, state), {}, {
-        generation: action.generation
-      });
+      return _objectSpread(_objectSpread({}, state), action.travel);
 
     default:
       return state;
