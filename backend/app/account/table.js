@@ -18,7 +18,7 @@ class AccountTable{
     static getAccount({ usernameHash }) {
         return new Promise((resolve, reject) => {
             pool.query(
-                `SELECT id, "passwordHash" FROM account WHERE "usernameHash" = $1`,
+                `SELECT id, "passwordHash", "sessionId" FROM account WHERE "usernameHash" = $1`,
                 [ usernameHash ],
                 (error, response) => {
                     if (error) return reject(error);
@@ -27,6 +27,19 @@ class AccountTable{
                 } 
             )
         });
+    }
+
+    static updateSessionId({ sessionId, usernameHash }) {
+        return new Promise((resolve, reject) => {
+            pool.query(
+                `UPDATE account SET "sessionId" = $1 WHERE "usernameHash" = $2`,
+                [ sessionId, usernameHash ],
+                (error, response) => {
+                    if (error) return reject(error);
+                    resolve();
+                }
+            )
+        })
     }
 }
 
