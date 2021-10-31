@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const TravelEngine = require("./traveltime/engine.js");
 const plantRouter = require("./api/plant.js");
 const travelRouter = require("./api/travel.js");
@@ -11,6 +12,7 @@ const engine = new TravelEngine();
 app.locals.engine = engine;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use("/account", accountRouter);
 app.use("/plant", plantRouter);
 app.use("/travel", travelRouter);
