@@ -18,7 +18,6 @@ app.use("/plant", plantRouter);
 app.use("/travel", travelRouter);
 app.use(cors({ origin: "http://localhost:1234" }));
 
-
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
 
